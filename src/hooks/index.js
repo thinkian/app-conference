@@ -1,8 +1,15 @@
 import { useEffect } from 'react';
-import { WOW } from 'wowjs/dist/wow';
+
+let WOW;
+
+if (typeof window !== 'undefined') {
+  WOW = require('wowjs/dist/wow').WOW;
+}
 
 export const useAnimations = dependency => {
   useEffect(() => {
-    new WOW({ live: false }).init();
+    if (WOW) {
+      new WOW({ live: false }).init();
+    }
   }, [dependency]);
 };
