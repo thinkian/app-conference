@@ -1,6 +1,10 @@
+import { useNav } from '../../hooks';
+
 const Sponsors = () => {
+  const navRef = useNav('sponsors');
+
   return (
-    <section id="sponsors" className="section-padding">
+    <section ref={navRef} id="sponsors" className="section-padding">
       <div className="container">
         <div className="row">
           <div className="col-12">

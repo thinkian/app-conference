@@ -1,6 +1,14 @@
+import { useNav } from '../../hooks';
+
 const About = () => {
+  const navRef = useNav('about');
+
   return (
-    <section id="about" className="counter-section section-padding">
+    <section
+      ref={navRef}
+      id="about"
+      className="counter-section section-padding"
+    >
       <div className="container">
         <div className="row">
           <div className="col-md-6 col-lg-3 col-xs-12 work-counter-widget text-center">

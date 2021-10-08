@@ -1,6 +1,10 @@
+import { useNav } from '../../hooks';
+
 const FAQ = () => {
+  const navRef = useNav('faq');
+
   return (
-    <section id="faq" className="section-padding">
+    <section ref={navRef} id="faq" className="section-padding">
       <div className="container">
         <div className="row">
           <div className="col-12">

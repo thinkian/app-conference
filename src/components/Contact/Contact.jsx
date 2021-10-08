@@ -1,6 +1,9 @@
 import { getBase } from '../../helpers';
+import { useNav } from '../../hooks';
 
 const Contact = () => {
+  const navRef = useNav('contact');
+
   const handleSubmit = async event => {
     const form = event.target;
     const isValid = form.checkValidity();
@@ -21,7 +24,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="section-padding">
+    <section ref={navRef} id="contact" className="section-padding">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-12">

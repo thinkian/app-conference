@@ -1,6 +1,10 @@
+import { useNav } from '../../hooks';
+
 const Schedule = () => {
+  const navRef = useNav('schedule');
+
   return (
-    <section id="schedule" className="schedule section-padding">
+    <section ref={navRef} id="schedule" className="schedule section-padding">
       <div className="container">
         <div className="row">
           <div className="col-12">

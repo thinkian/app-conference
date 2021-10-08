@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import { getBase, getFields } from '../../helpers';
-
 import Speaker from './Speaker';
-import { useAnimations } from '../../hooks/index';
+
+import { getBase, getFields } from '../../helpers';
+import { useAnimations, useNav } from '../../hooks';
 
 const Speakers = () => {
   const defaultSpeakers = [
@@ -45,6 +45,7 @@ const Speakers = () => {
     }
   ];
   const [speakers, setSpeakers] = useState(defaultSpeakers);
+  const navRef = useNav('speakers');
 
   useAnimations(speakers);
   useEffect(() => {
@@ -65,7 +66,7 @@ const Speakers = () => {
   }, []);
 
   return (
-    <section id="speakers" className="section-padding text-center">
+    <section ref={navRef} id="speakers" className="section-padding text-center">
       <div className="container">
         <div className="row">
           <div className="col-12">

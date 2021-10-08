@@ -1,38 +1,44 @@
 import { useEffect, useRef } from 'react';
 
+import Navbar from '../Navbar/Navbar';
+
+import { useNav } from '../../hooks';
+
 const Header = () => {
   const links = [
     {
       label: 'Home',
-      to: '#header'
+      to: 'header'
     },
     {
       label: 'About',
-      to: '#about'
+      to: 'about'
     },
     {
       label: 'Schedule',
-      to: '#schedule'
+      to: 'schedule'
     },
     {
       label: 'Speakers',
-      to: '#speakers'
+      to: 'speakers'
     },
     {
       label: 'FAQ',
-      to: '#faq'
+      to: 'faq'
     },
     {
       label: 'Sponsors',
-      to: '#sponsors'
+      to: 'sponsors'
     },
     {
       label: 'Contact',
-      to: '#contact'
+      to: 'contact'
     }
   ];
 
   const navbar = useRef();
+  const navRef = useNav('header');
+
   const handleScroll = () => {
     const className = 'top-nav-collapse';
 
@@ -49,10 +55,10 @@ const Header = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-  }, [navbar.current]);
+  }, []);
 
   return (
-    <header id="header">
+    <header ref={navRef} id="header">
       <nav
         ref={navbar}
         className="navbar navbar-expand-lg fixed-top scrolling-navbar"
@@ -78,18 +84,7 @@ const Header = () => {
             </a>
           </div>
           <div className="collapse navbar-collapse" id="main-navbar">
-            <ul className="navbar-nav mr-auto w-100 justify-content-end">
-              {links.map((link, index) => (
-                <li
-                  key={link.to}
-                  className={index ? 'nav-item' : 'nav-item active'}
-                >
-                  <a className="nav-link" href={link.to}>
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <Navbar links={links} />
           </div>
         </div>
         <ul className="mobile-menu">

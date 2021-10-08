@@ -11,6 +11,7 @@ import {
   Speakers,
   Sponsors
 } from './components';
+import { NavProvider } from './context';
 import { useAnimations } from './hooks';
 
 const App = () => {
@@ -18,17 +19,19 @@ const App = () => {
 
   return (
     <div className="app">
-      <Header />
-      <Hero />
-      <Countdown />
-      <About />
-      <Schedule />
-      <Speakers />
-      <Newsletter />
-      <FAQ />
-      <Sponsors />
-      <Contact />
-      <Footer />
+      <NavProvider>
+        <Header />
+        <Hero />
+        <Countdown />
+        <About />
+        <Schedule />
+        <Speakers />
+        <Newsletter />
+        <FAQ />
+        <Sponsors />
+        <Contact />
+        <Footer />
+      </NavProvider>
     </div>
   );
 };
