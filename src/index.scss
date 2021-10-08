@@ -1,0 +1,10 @@
+$preset: #e91e63;
+
+@import '~animate.css/animate.compat.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+@import '../public/assets/fonts/line-icons.css';
+
+@import './styles/global';
+@import './styles/responsive';
+@import './components/index.scss';

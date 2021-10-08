@@ -1,0 +1,32 @@
+.app-hero {
+  position: relative;
+  min-height: 450px;
+  background-image: url('./images/product-school-dJICd7b_LlE-unsplash.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: 0 -400px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(#370767, 0.8);
+  }
+
+  &-content {
+    position: relative;
+    z-index: 1;
+    max-width: 65%;
+    margin: auto;
+    color: white;
+    text-align: center;
+    padding: 5em 0;
+
+    .lead {
+      margin-bottom: 3em;
+    }
+  }
+}
