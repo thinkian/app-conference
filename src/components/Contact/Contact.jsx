@@ -1,27 +1,9 @@
-import { getBase } from '../../helpers';
-import { useNav } from '../../hooks';
+import { useContactForm, useNav } from '../../hooks';
 
 const Contact = () => {
   const navRef = useNav('contact');
-
-  const handleSubmit = async event => {
-    const form = event.target;
-    const isValid = form.checkValidity();
-
-    if (isValid) {
-      getBase('📧 Contact').create(
-        {
-          Name: form.elements.name.value,
-          Email: form.elements.email.value,
-          Subject: form.elements.subject.value,
-          Message: form.elements.message.value
-        },
-        () => {
-          form.reset();
-        }
-      );
-    }
-  };
+  const [handleSubmit, message] = useContactForm();
+  const msgClass = message ? 'animated tada' : 'hidden';
 
   return (
     <section ref={navRef} id="contact" className="section-padding">
@@ -38,16 +20,13 @@ const Contact = () => {
             </div>
           </div>
           <div className="col-lg-7 col-md-12 col-xs-12">
-            <div
-              className="container-form wow fadeInLeft"
-              data-wow-delay="0.2s"
-            >
+            <div className="contact-form wow fadeInLeft" data-wow-delay="0.2s">
               <div className="form-wrapper">
                 <form
                   method="post"
                   id="contactForm"
                   name="contact-form"
-                  data-toggle="validator"
+                  noValidate
                   onSubmit={handleSubmit}
                 >
                   <div className="row">
@@ -57,10 +36,14 @@ const Contact = () => {
                           className="form-control"
                           name="name"
                           placeholder="Name"
+                          autoComplete="new-name"
                           required
-                          data-error="Please enter your name"
                         />
-                        <div className="help-block with-errors"></div>
+                        <div className="help-block with-errors">
+                          <small className="text-danger">
+                            Please enter your name
+                          </small>
+                        </div>
                       </div>
                     </div>
                     <div className="col-md-6 form-line">
@@ -71,9 +54,12 @@ const Contact = () => {
                           name="email"
                           placeholder="Email"
                           required
-                          data-error="Please enter your email"
                         />
-                        <div className="help-block with-errors"></div>
+                        <div className="help-block with-errors">
+                          <small className="text-danger">
+                            Please enter your email
+                          </small>
+                        </div>
                       </div>
                     </div>
                     <div className="col-md-12 form-line">
@@ -82,10 +68,14 @@ const Contact = () => {
                           className="form-control"
                           name="subject"
                           placeholder="Subject"
+                          autoComplete="new-name"
                           required
-                          data-error="Please enter your message subject"
                         />
-                        <div className="help-block with-errors"></div>
+                        <div className="help-block with-errors">
+                          <small className="text-danger">
+                            Please enter your message subject
+                          </small>
+                        </div>
                       </div>
                     </div>
                     <div className="col-md-12">
@@ -97,9 +87,12 @@ const Contact = () => {
                           name="message"
                           placeholder="Enter your message..."
                           required
-                          data-error="Please enter your message"
                         ></textarea>
-                        <div className="help-block with-errors"></div>
+                        <div className="help-block with-errors">
+                          <small className="text-danger">
+                            Please enter your message
+                          </small>
+                        </div>
                       </div>
                       <div className="form-submit">
                         <button
@@ -115,8 +108,10 @@ const Contact = () => {
                         </button>
                         <div
                           id="msgSubmit"
-                          className="h3 text-center hidden"
-                        ></div>
+                          className={`h5 text-center text-success ${msgClass}`}
+                        >
+                          {message}
+                        </div>
                       </div>
                     </div>
                   </div>

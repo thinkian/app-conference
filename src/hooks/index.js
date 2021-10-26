@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 
 import { NavContext } from '../context';
+import { getBase } from '../helpers';
 
 let WOW;
 
@@ -51,4 +52,49 @@ export const useNav = navLinkId => {
   }, [isOnScreen, setActiveNavLinkId, navLinkId]);
 
   return ref;
+};
+
+export const useContactForm = () => {
+  const [message, setMessage] = useState('');
+  const handleSubmit = async event => {
+    const form = event.target;
+    const { elements, parentNode } = form;
+    const isValid = form.checkValidity();
+    const invalidInputs = form.querySelectorAll(':invalid');
+    const validInputs = form.querySelectorAll(':valid');
+
+    event.preventDefault();
+
+    validInputs.forEach(input => {
+      input.classList.remove('is-invalid');
+    });
+
+    if (!isValid) {
+      parentNode.addEventListener('animationend', () => {
+        parentNode.classList.remove('animated', 'shakeX');
+      });
+
+      parentNode.classList.add('animated', 'shakeX');
+
+      invalidInputs.forEach(input => {
+        input.classList.add('is-invalid');
+      });
+
+      return;
+    }
+
+    // TODO: Handle submit
+    setMessage('Message submitted!');
+    form.reset();
+  };
+
+  useEffect(() => {
+    if (message) {
+      setTimeout(() => {
+        setMessage('');
+      }, 3000);
+    }
+  }, [message]);
+
+  return [handleSubmit, message];
 };
