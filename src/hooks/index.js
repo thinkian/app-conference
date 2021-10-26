@@ -166,6 +166,20 @@ export const useOnScreen = ref => {
   return isOnScreen;
 };
 
+export const useSmoothScroll = () => {
+  const { activeNavLinkId, setActiveNavLinkId } = useContext(NavContext);
+
+  const handleClick = (navLinkId, event) => {
+    event.preventDefault();
+
+    setActiveNavLinkId(navLinkId);
+
+    document.getElementById(navLinkId).scrollIntoView({ behavior: 'smooth' });
+  };
+
+  return [activeNavLinkId, handleClick];
+};
+
 export const useSpeakers = () => {
   const defaultSpeakers = [
     {

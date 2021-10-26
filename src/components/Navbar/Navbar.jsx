@@ -1,17 +1,8 @@
-import { useContext } from 'react';
-import { NavContext } from '../../context';
+import { useSmoothScroll } from '../../hooks';
 
 const Navbar = props => {
   const { links } = props;
-  const { activeNavLinkId, setActiveNavLinkId } = useContext(NavContext);
-
-  const handleClick = (navLinkId, event) => {
-    event.preventDefault();
-
-    setActiveNavLinkId(navLinkId);
-
-    document.getElementById(navLinkId).scrollIntoView({ behavior: 'smooth' });
-  };
+  const [activeNavLinkId, handleClick] = useSmoothScroll();
 
   return (
     <ul className="navbar-nav mr-auto w-100 justify-content-end">

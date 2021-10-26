@@ -1,6 +1,10 @@
 import { Fragment } from 'react';
+import { useNewsletter, useSmoothScroll } from '../../hooks';
 
 const Footer = () => {
+  const handleSubmit = useNewsletter();
+  const [, handleClick] = useSmoothScroll();
+
   return (
     <Fragment>
       <footer className="footer-area section-padding">
@@ -25,19 +29,38 @@ const Footer = () => {
               <h3>QUICK LINKS</h3>
               <ul>
                 <li>
-                  <a href="#about">About Conference</a>
+                  <a href="#about" onClick={handleClick.bind(null, 'about')}>
+                    About Conference
+                  </a>
                 </li>
                 <li>
-                  <a href="#schedule">Event Schedule</a>
+                  <a
+                    href="#schedule"
+                    onClick={handleClick.bind(null, 'schedule')}
+                  >
+                    Event Schedule
+                  </a>
                 </li>
                 <li>
-                  <a href="#speakers">Meet Our Speakers</a>
+                  <a
+                    href="#speakers"
+                    onClick={handleClick.bind(null, 'speakers')}
+                  >
+                    Meet Our Speakers
+                  </a>
                 </li>
                 <li>
-                  <a href="#sponsors">Our Sponsors</a>
+                  <a
+                    href="#sponsors"
+                    onClick={handleClick.bind(null, 'sponsors')}
+                  >
+                    Our Sponsors
+                  </a>
                 </li>
                 <li>
-                  <a href="#faq">Frequently Asked Questions</a>
+                  <a href="#faq" onClick={handleClick.bind(null, 'faq')}>
+                    Frequently Asked Questions
+                  </a>
                 </li>
               </ul>
             </div>
@@ -87,21 +110,17 @@ const Footer = () => {
               className="col-md-6 col-lg-3 col-sm-6 col-xs-12 wow fadeInUp"
               data-wow-delay="0.8s"
             >
-              <h3>SUBSCRIBE US</h3>
+              <h3>SUBSCRIBE</h3>
               <div className="widget">
                 <div className="newsletter-wrapper">
-                  <form
-                    method="post"
-                    name="subscribe-form"
-                    className="validate"
-                  >
+                  <form method="post" onSubmit={handleSubmit} noValidate>
                     <div className="form-group is-empty">
                       <input
                         type="email"
-                        name="Email"
+                        name="email"
                         className="form-control"
                         placeholder="Your email"
-                        required=""
+                        required
                       />
                       <button
                         type="submit"
@@ -117,7 +136,7 @@ const Footer = () => {
               </div>
 
               <div className="widget">
-                <h5 className="widget-title">FOLLOW US ON</h5>
+                <h5 className="widget-title">FOLLOW US</h5>
                 <ul className="footer-social">
                   <li>
                     <a className="facebook" href="#">
