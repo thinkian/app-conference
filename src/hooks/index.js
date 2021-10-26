@@ -1,7 +1,6 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 
 import { NavContext } from '../context';
-import { getBase } from '../helpers';
 
 let WOW;
 
@@ -17,48 +16,11 @@ export const useAnimations = dependency => {
   }, [dependency]);
 };
 
-export const useOnScreen = ref => {
-  const [isOnScreen, setOnScreen] = useState(false);
-
-  const observer = new IntersectionObserver(
-    ([entry]) => setOnScreen(entry.isIntersecting),
-    {
-      threshold: [0.25, 0.5, 0.75]
-    }
-  );
-
-  useEffect(() => {
-    observer.observe(ref.current);
-
-    return () => {
-      observer.disconnect();
-    };
-  });
-
-  return isOnScreen;
-};
-
-export const useNav = navLinkId => {
-  const ref = useRef(null);
-
-  const { setActiveNavLinkId } = useContext(NavContext);
-
-  const isOnScreen = useOnScreen(ref);
-
-  useEffect(() => {
-    if (isOnScreen) {
-      setActiveNavLinkId(navLinkId);
-    }
-  }, [isOnScreen, setActiveNavLinkId, navLinkId]);
-
-  return ref;
-};
-
 export const useContactForm = () => {
   const [message, setMessage] = useState('');
   const handleSubmit = async event => {
     const form = event.target;
-    const { elements, parentNode } = form;
+    const { parentNode } = form;
     const isValid = form.checkValidity();
     const invalidInputs = form.querySelectorAll(':invalid');
     const validInputs = form.querySelectorAll(':valid');
@@ -141,4 +103,65 @@ export const useCountdown = start => {
   });
 
   return countdown;
+};
+
+export const useNav = navLinkId => {
+  const ref = useRef(null);
+
+  const { setActiveNavLinkId } = useContext(NavContext);
+
+  const isOnScreen = useOnScreen(ref);
+
+  useEffect(() => {
+    if (isOnScreen) {
+      setActiveNavLinkId(navLinkId);
+    }
+  }, [isOnScreen, setActiveNavLinkId, navLinkId]);
+
+  return ref;
+};
+
+export const useNewsletter = () => {
+  const handleSubmit = async event => {
+    const { target } = event;
+    const { value } = target.elements.email;
+
+    event.preventDefault();
+
+    if (!value) {
+      target.addEventListener('animationend', () => {
+        target.classList.remove('animated', 'shakeX');
+      });
+
+      target.classList.add('animated', 'shakeX');
+      return;
+    }
+
+    // TODO: Handle submit
+
+    target.reset();
+  };
+
+  return handleSubmit;
+};
+
+export const useOnScreen = ref => {
+  const [isOnScreen, setOnScreen] = useState(false);
+
+  const observer = new IntersectionObserver(
+    ([entry]) => setOnScreen(entry.isIntersecting),
+    {
+      threshold: [0.25, 0.5, 0.75]
+    }
+  );
+
+  useEffect(() => {
+    observer.observe(ref.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  });
+
+  return isOnScreen;
 };

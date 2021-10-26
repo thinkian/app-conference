@@ -1,18 +1,7 @@
-import { getBase } from '../../helpers';
+import { useNewsletter } from '../../hooks';
 
 const Newsletter = () => {
-  const handleSubmit = async event => {
-    event.preventDefault();
-
-    const { target } = event;
-    const { value } = target.elements.email;
-
-    if (value && value.length) {
-      getBase('🗞 Subscribers').create({ Email: value.trim() }, () => {
-        target.reset();
-      });
-    }
-  };
+  const handleSubmit = useNewsletter();
 
   return (
     <div id="subscribe" className="section-padding">
@@ -29,12 +18,14 @@ const Newsletter = () => {
                 onSubmit={handleSubmit}
                 method="post"
                 autoComplete="off"
+                noValidate
               >
                 <input
                   className="mb-20 form-control"
                   name="email"
                   type="email"
                   placeholder="Enter Your Email Here"
+                  required
                 />
                 <button
                   type="submit"
