@@ -165,3 +165,56 @@ export const useOnScreen = ref => {
 
   return isOnScreen;
 };
+
+export const useSpeakers = () => {
+  const defaultSpeakers = [
+    {
+      name: 'Jonathon Doe',
+      role: 'Product Designer',
+      company: 'Tesla',
+      index: 0
+    },
+    {
+      name: 'Patricia Green',
+      role: 'Front-end Developer',
+      company: 'Dropbox',
+      index: 1
+    },
+    {
+      name: 'Paul Kowalsy',
+      role: 'Lead Designer',
+      company: 'TNW',
+      index: 2
+    },
+    {
+      name: 'Jhon Doe',
+      role: 'Back-end Developer',
+      company: 'ASUS',
+      index: 3
+    },
+    {
+      name: 'Daryl Dixon',
+      role: 'Full-stack Developer',
+      company: 'Google',
+      index: 4
+    },
+    {
+      name: 'Kris Adams',
+      role: 'UI Designer',
+      company: 'Apple',
+      index: 5
+    }
+  ];
+  const [speakers, setSpeakers] = useState(defaultSpeakers);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // TODO: Fetch speakers
+      // setSpeakers(speakers);
+    };
+
+    fetchData();
+  }, []);
+
+  return speakers;
+};

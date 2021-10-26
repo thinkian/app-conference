@@ -1,69 +1,12 @@
-import { useEffect, useState } from 'react';
-
 import Speaker from './Speaker';
 
-import { getBase, getFields } from '../../helpers';
-import { useAnimations, useNav } from '../../hooks';
+import { useAnimations, useNav, useSpeakers } from '../../hooks';
 
 const Speakers = () => {
-  const defaultSpeakers = [
-    {
-      name: 'Jonathon Doe',
-      role: 'Product Designer',
-      company: 'Tesla',
-      index: 0
-    },
-    {
-      name: 'Patricia Green',
-      role: 'Front-end Developer',
-      company: 'Dropbox',
-      index: 1
-    },
-    {
-      name: 'Paul Kowalsy',
-      role: 'Lead Designer',
-      company: 'TNW',
-      index: 2
-    },
-    {
-      name: 'Jhon Doe',
-      role: 'Back-end Developer',
-      company: 'ASUS',
-      index: 3
-    },
-    {
-      name: 'Daryl Dixon',
-      role: 'Full-stack Developer',
-      company: 'Google',
-      index: 4
-    },
-    {
-      name: 'Kris Adams',
-      role: 'UI Designer',
-      company: 'Apple',
-      index: 5
-    }
-  ];
-  const [speakers, setSpeakers] = useState(defaultSpeakers);
+  const speakers = useSpeakers();
   const navRef = useNav('speakers');
 
   useAnimations(speakers);
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getBase('🎤 Speakers')
-        .select({
-          view: 'All speakers',
-          fields: ['Name', 'Role', 'Company', 'Image'],
-          filterByFormula: 'AND({Confirmed?}, {Speaking at})'
-        })
-        .firstPage();
-      const speakers = getFields(data);
-
-      setSpeakers(speakers);
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <section ref={navRef} id="speakers" className="section-padding text-center">
