@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 
 import { NavContext } from '../context';
 import { getBase } from '../helpers';
@@ -97,4 +97,48 @@ export const useContactForm = () => {
   }, [message]);
 
   return [handleSubmit, message];
+};
+
+export const useCountdown = start => {
+  const calculateTimeLeft = () => {
+    const difference = +new Date(start) - +new Date();
+    const defaultTime = {
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0
+    };
+
+    if (Number.isNaN(difference)) {
+      return defaultTime;
+    }
+
+    if (difference > 0) {
+      return {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60)
+      };
+    }
+
+    return defaultTime;
+  };
+
+  const [countdown, setCountdown] = useState(calculateTimeLeft());
+  const callback = useCallback(calculateTimeLeft, [start]);
+
+  useEffect(() => {
+    if (!start) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setCountdown(callback());
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  });
+
+  return countdown;
 };

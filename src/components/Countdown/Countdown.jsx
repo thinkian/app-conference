@@ -1,19 +1,9 @@
-/* eslint-disable no-undef */
-import { getBase, setCountdown } from '../../helpers';
-import { useEffect } from 'react';
+import { useCountdown } from '../../hooks';
 
 const Countdown = () => {
-  // useEffect(() => {
-  //   // getBase('📆 Schedule')
-  //   //   .select({ maxRecords: 1, view: 'Full schedule' })
-  //   //   .firstPage((err, records) => {
-  //   //     if (err) return;
-  //   //     const [record] = records;
-  //   //     const start = record.get('Start');
-  //   //     const startDate = new Date(start);
-  //   //     setCountdown(startDate);
-  //   //   });
-  // }, []);
+  // TODO: Update countdown date
+  const countdown = useCountdown('2021-09-01');
+
   return (
     <section className="countdown-timer section-padding">
       <div className="container">
@@ -32,16 +22,16 @@ const Countdown = () => {
             >
               <div id="clock" className="time-count">
                 <div className="time-entry days">
-                  <span>48</span> Days
+                  <span>{countdown.days}</span> Days
                 </div>
                 <div className="time-entry hours">
-                  <span>18</span> Hours
+                  <span>{countdown.hours}</span> Hours
                 </div>
                 <div className="time-entry minutes">
-                  <span>22</span> Minutes
+                  <span>{countdown.minutes}</span> Minutes
                 </div>
                 <div className="time-entry seconds">
-                  <span>51</span> Seconds
+                  <span>{countdown.seconds}</span> Seconds
                 </div>
               </div>
             </div>
