@@ -175,6 +175,11 @@ export const useNewsletter = () => {
 export const useOnScreen = ref => {
   const [isOnScreen, setOnScreen] = useState(false);
 
+  if (typeof window === 'undefined') {
+    // Exit early on server side
+    return false;
+  }
+
   const observer = new IntersectionObserver(
     ([entry]) => setOnScreen(entry.isIntersecting),
     {
@@ -182,6 +187,7 @@ export const useOnScreen = ref => {
     }
   );
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     observer.observe(ref.current);
 
@@ -196,7 +202,10 @@ export const useOnScreen = ref => {
 export const useSmoothScroll = () => {
   const { activeNavLinkId, setActiveNavLinkId } = useContext(NavContext);
 
-  const handleClick = (navLinkId, event) => {
+  const handleClick = event => {
+    const target = event.target;
+    const navLinkId = target.getAttribute('href').slice(1);
+
     event.preventDefault();
 
     setActiveNavLinkId(navLinkId);
@@ -204,7 +213,7 @@ export const useSmoothScroll = () => {
     document.getElementById(navLinkId).scrollIntoView({ behavior: 'smooth' });
   };
 
-  return [activeNavLinkId, handleClick];
+  return [handleClick, activeNavLinkId];
 };
 
 export const useSpeakers = () => {

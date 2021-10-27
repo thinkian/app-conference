@@ -1,4 +1,8 @@
+import { useSmoothScroll } from '../../hooks';
+
 const Hero = () => {
+  const [handleClick] = useSmoothScroll();
+
   return (
     <div className="app-hero jumbotron">
       <div className="app-hero-content">
@@ -6,7 +10,12 @@ const Hero = () => {
         <p className="lead">
           Join us for the most exciting tech conference of the year.
         </p>
-        <a className="btn btn-common btn-lg" href="#about" role="button">
+        <a
+          className="btn btn-common btn-lg"
+          href="#about"
+          role="button"
+          onClick={handleClick}
+        >
           Learn more
         </a>
       </div>

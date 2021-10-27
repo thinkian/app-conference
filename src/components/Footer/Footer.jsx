@@ -3,7 +3,7 @@ import { useNewsletter, useSmoothScroll } from '../../hooks';
 
 const Footer = () => {
   const handleSubmit = useNewsletter();
-  const [, handleClick] = useSmoothScroll();
+  const [handleClick] = useSmoothScroll();
 
   return (
     <Fragment>
@@ -29,36 +29,27 @@ const Footer = () => {
               <h3>QUICK LINKS</h3>
               <ul>
                 <li>
-                  <a href="#about" onClick={handleClick.bind(null, 'about')}>
+                  <a href="#about" onClick={handleClick}>
                     About Conference
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#schedule"
-                    onClick={handleClick.bind(null, 'schedule')}
-                  >
+                  <a href="#schedule" onClick={handleClick}>
                     Event Schedule
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#speakers"
-                    onClick={handleClick.bind(null, 'speakers')}
-                  >
+                  <a href="#speakers" onClick={handleClick}>
                     Meet Our Speakers
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#sponsors"
-                    onClick={handleClick.bind(null, 'sponsors')}
-                  >
+                  <a href="#sponsors" onClick={handleClick}>
                     Our Sponsors
                   </a>
                 </li>
                 <li>
-                  <a href="#faq" onClick={handleClick.bind(null, 'faq')}>
+                  <a href="#faq" onClick={handleClick}>
                     Frequently Asked Questions
                   </a>
                 </li>
