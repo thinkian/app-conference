@@ -8,6 +8,33 @@ if (typeof window !== 'undefined') {
   WOW = require('wowjs/dist/wow').WOW;
 }
 
+export const useAccordion = () => {
+  const [expanded, setExpanded] = useState(false);
+  const container = useRef();
+  const handleClickOutside = useCallback(
+    event => {
+      const ref = container.current;
+
+      if (ref && !ref.contains(event.target)) {
+        setExpanded(false);
+      }
+    },
+    [container]
+  );
+
+  const handleClick = () => {
+    setExpanded(!expanded);
+
+    if (!expanded) {
+      document.body.addEventListener('click', handleClickOutside);
+    } else {
+      document.body.removeEventListener('click', handleClickOutside);
+    }
+  };
+
+  return [expanded, container, handleClick];
+};
+
 export const useAnimations = dependency => {
   useEffect(() => {
     if (WOW) {

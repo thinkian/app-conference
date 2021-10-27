@@ -1,0 +1,27 @@
+$preset: #e91e63;
+
+.faq {
+  .accordion-btn {
+    padding: 0;
+    border: 0;
+    color: #777;
+
+    &:hover,
+    &:focus {
+      color: $preset;
+      text-decoration: none;
+    }
+
+    > i {
+      display: inline-block;
+      margin-right: 5px;
+      transition: transform 0.1s linear;
+    }
+
+    &[aria-expanded='true'] {
+      > i {
+        transform: rotate(90deg);
+      }
+    }
+  }
+}
