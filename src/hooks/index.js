@@ -232,3 +232,15 @@ export const useSpeakers = () => {
 
   return speakers;
 };
+
+export const useTabs = initialTab => {
+  const [activeTab, setActiveTab] = useState(initialTab);
+  const handleClick = event => {
+    const target = event.currentTarget;
+    event.preventDefault();
+
+    setActiveTab(target.getAttribute('aria-controls'));
+  };
+
+  return [activeTab, handleClick];
+};

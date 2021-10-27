@@ -1,6 +1,58 @@
-import { useNav } from '../../hooks';
+import { useNav, useTabs } from '../../hooks';
+
+import ScheduleTabPane from './ScheduleTabPane';
 
 const Schedule = () => {
+  const tabs = [
+    {
+      id: 'dayOne',
+      title: 'Day One',
+      subtitle: 'November 18',
+      events: [
+        {
+          activity: 'Web Design Principles and Best Practices',
+          startTime: '10am',
+          endTime: '12:30pm',
+          speakers: ['David Warner'],
+          speakerImageUrl: 'assets/img/speaker/speakers-2.jpg',
+          location: 'Standford Hall'
+        },
+        {
+          activity: 'Building the MVP on Time and on Budget',
+          startTime: '2pm',
+          endTime: '4pm',
+          speakers: ['Yara Smith'],
+          speakerImageUrl: 'assets/img/speaker/speakers-1.jpg',
+          location: 'Auditorium C'
+        }
+      ]
+    },
+    {
+      id: 'dayTwo',
+      title: 'Day Two',
+      subtitle: 'November 19',
+      events: [
+        {
+          activity:
+            'Engineering Management: Bringing Change to an Organization',
+          startTime: '11am',
+          endTime: '12pm',
+          speakers: ['Patricia Green'],
+          speakerImageUrl: 'assets/img/speaker/speakers-3.jpg',
+          location: 'Standford Hall'
+        },
+        {
+          activity: 'Debugging is Easier with the Right Tools',
+          startTime: '1:30pm',
+          endTime: '3:30pm',
+          speakers: ['Daryl Dixon'],
+          speakerImageUrl: 'assets/img/speaker/speakers-4.jpg',
+          location: 'Auditorium B'
+        }
+      ]
+    }
+  ];
+  const [activeTab, handleClick] = useTabs(tabs[0].id);
   const navRef = useNav('schedule');
 
   return (
@@ -20,680 +72,43 @@ const Schedule = () => {
           </div>
         </div>
         <div className="schedule-area row wow fadeInDown" data-wow-delay="0.3s">
-          <div className="schedule-tab-title col-md-3 col-lg-3 col-xs-12">
+          <div className="schedule-tab-controls col-md-3 col-lg-3 col-xs-12">
             <div className="table-responsive">
-              <ul className="nav nav-tabs" id="myTab" role="tablist">
-                <li className="nav-item">
-                  <a
-                    className="nav-link active"
-                    id="monday-tab"
-                    data-toggle="tab"
-                    href="#monday"
-                    role="tab"
-                    aria-controls="monday"
-                    aria-expanded="true"
-                  >
-                    <div className="item-text">
-                      <h4>Monday</h4>
-                      <h5>14 February</h5>
-                    </div>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    id="tuesday-tab"
-                    data-toggle="tab"
-                    href="#tuesday"
-                    role="tab"
-                    aria-controls="tuesday"
-                  >
-                    <div className="item-text">
-                      <h4>Tuesday</h4>
-                      <h5>15 February</h5>
-                    </div>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    id="wednesday-tab"
-                    data-toggle="tab"
-                    href="#wednesday"
-                    role="tab"
-                    aria-controls="wednesday"
-                  >
-                    <div className="item-text">
-                      <h4>Wednesday</h4>
-                      <h5>16 February</h5>
-                    </div>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    id="thursday-tab"
-                    data-toggle="tab"
-                    href="#thursday"
-                    role="tab"
-                    aria-controls="thursday"
-                  >
-                    <div className="item-text">
-                      <h4>Thursday</h4>
-                      <h5>17 February</h5>
-                    </div>
-                  </a>
-                </li>
+              <ul className="nav nav-tabs" id="scheduleTab" role="tablist">
+                {tabs.map(tab => (
+                  <li key={tab.id} className="nav-item">
+                    <a
+                      className={`nav-link ${
+                        tab.id === activeTab ? 'active' : ''
+                      }`}
+                      id={`${tab.id}-tab`}
+                      href={`#${tab.id}`}
+                      role="tab"
+                      aria-controls={tab.id}
+                      aria-expanded={tab.id === activeTab ? 'true' : 'false'}
+                      onClick={handleClick}
+                    >
+                      <div className="nav-item-text">
+                        <h4 className="nav-item-text-title">{tab.title}</h4>
+                        <h5 className="nav-item-text-subtitle">
+                          {tab.subtitle}
+                        </h5>
+                      </div>
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
           <div className="schedule-tab-content col-md-9 col-lg-9 col-xs-12 clearfix">
-            <div className="tab-content" id="myTabContent">
-              <div
-                className="tab-pane fade show active"
-                id="monday"
-                role="tabpanel"
-                aria-labelledby="monday-tab"
-              >
-                <div id="accordion">
-                  <div className="card">
-                    <div id="headingOne">
-                      <div
-                        className="collapsed card-header"
-                        data-toggle="collapse"
-                        data-target="#collapseOne"
-                        aria-expanded="false"
-                        aria-controls="collapseOne"
-                      >
-                        <div className="images-box">
-                          <img
-                            className="img-fluid"
-                            src="assets/img/speaker/speakers-1.jpg"
-                            alt=""
-                          />
-                        </div>
-                        <span className="time">10am - 12:30pm</span>
-                        <h4>Web Design Principles and Best Practices</h4>
-                        <h5 className="name">David Warner</h5>
-                      </div>
-                    </div>
-                    <div
-                      id="collapseOne"
-                      className="collapse show"
-                      aria-labelledby="headingOne"
-                      data-parent="#accordion"
-                    >
-                      <div className="card-body">
-                        <p>
-                          Consectetur adipisicing elit. Quod distinctio impedit
-                          sint accusantium ducimus lites consequuntur innobisl
-                          dolores saepe.Proin sit amet turpis lobortis.
-                        </p>
-                        <div className="location">
-                          <span>Location:</span> Hall 1 , Building A, Golden
-                          Street, San Francisco, CA
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="card">
-                    <div id="headingTwo">
-                      <div
-                        className="collapsed card-header"
-                        data-toggle="collapse"
-                        data-target="#collapseTwo"
-                        aria-expanded="false"
-                        aria-controls="collapseTwo"
-                      >
-                        <div className="images-box">
-                          <img
-                            className="img-fluid"
-                            src="assets/img/speaker/speakers-2.jpg"
-                            alt=""
-                          />
-                        </div>
-                        <span className="time">10am - 12:30pm</span>
-                        <h4>15 Free Productive Design Tools</h4>
-                        <h5 className="name">David Warner</h5>
-                      </div>
-                    </div>
-                    <div
-                      id="collapseTwo"
-                      className="collapse"
-                      aria-labelledby="headingTwo"
-                      data-parent="#accordion"
-                    >
-                      <div className="card-body">
-                        <p>
-                          Consectetur adipisicing elit. Quod distinctio impedit
-                          sint accusantium ducimus lites consequuntur innobisl
-                          dolores saepe.Proin sit amet turpis lobortis.
-                        </p>
-                        <div className="location">
-                          <span>Location:</span> Hall 1 , Building A, Golden
-                          Street, San Francisco, CA
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="card">
-                    <div id="headingThree">
-                      <div
-                        className="collapsed card-header"
-                        data-toggle="collapse"
-                        data-target="#collapseThree"
-                        aria-expanded="false"
-                        aria-controls="collapseThree"
-                      >
-                        <div className="images-box">
-                          <img
-                            className="img-fluid"
-                            src="assets/img/speaker/speakers-3.jpg"
-                            alt=""
-                          />
-                        </div>
-                        <span className="time">10am - 12:30pm</span>
-                        <h4>Getting Started With SketchApp</h4>
-                        <h5 className="name">David Warner</h5>
-                      </div>
-                    </div>
-                    <div
-                      id="collapseThree"
-                      className="collapse"
-                      aria-labelledby="headingThree"
-                      data-parent="#accordion"
-                    >
-                      <div className="card-body">
-                        <p>
-                          Consectetur adipisicing elit. Quod distinctio impedit
-                          sint accusantium ducimus lites consequuntur innobisl
-                          dolores saepe.Proin sit amet turpis lobortis.
-                        </p>
-                        <div className="location">
-                          <span>Location:</span> Hall 1 , Building A, Golden
-                          Street, San Francisco, CA
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                className="tab-pane fade"
-                id="tuesday"
-                role="tabpanel"
-                aria-labelledby="tuesday-tab"
-              >
-                <div id="accordion2">
-                  <div className="card">
-                    <div id="headingOne1">
-                      <div
-                        className="collapsed card-header"
-                        data-toggle="collapse"
-                        data-target="#collapseOne1"
-                        aria-expanded="false"
-                        aria-controls="collapseOne1"
-                      >
-                        <div className="images-box">
-                          <img
-                            className="img-fluid"
-                            src="assets/img/speaker/speakers-1.jpg"
-                            alt=""
-                          />
-                        </div>
-                        <span className="time">10am - 12:30pm</span>
-                        <h4>Web Design Principles and Best Practices</h4>
-                        <h5 className="name">David Warner</h5>
-                      </div>
-                    </div>
-                    <div
-                      id="collapseOne1"
-                      className="collapse show"
-                      aria-labelledby="headingOne1"
-                      data-parent="#accordion2"
-                    >
-                      <div className="card-body">
-                        <p>
-                          Consectetur adipisicing elit. Quod distinctio impedit
-                          sint accusantium ducimus lites consequuntur innobisl
-                          dolores saepe.Proin sit amet turpis lobortis.
-                        </p>
-                        <div className="location">
-                          <span>Location:</span> Hall 1 , Building A, Golden
-                          Street, San Francisco, CA
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="card">
-                    <div id="headingTwo2">
-                      <div
-                        className="collapsed card-header"
-                        data-toggle="collapse"
-                        data-target="#collapseTwo2"
-                        aria-expanded="false"
-                        aria-controls="collapseTwo2"
-                      >
-                        <div className="images-box">
-                          <img
-                            className="img-fluid"
-                            src="assets/img/speaker/speakers-2.jpg"
-                            alt=""
-                          />
-                        </div>
-                        <span className="time">10am - 12:30pm</span>
-                        <h4>Web Design Principles and Best Practices</h4>
-                        <h5 className="name">David Warner</h5>
-                      </div>
-                    </div>
-                    <div
-                      id="collapseTwo2"
-                      className="collapse"
-                      aria-labelledby="headingTwo2"
-                      data-parent="#accordion2"
-                    >
-                      <div className="card-body">
-                        <p>
-                          Consectetur adipisicing elit. Quod distinctio impedit
-                          sint accusantium ducimus lites consequuntur innobisl
-                          dolores saepe.Proin sit amet turpis lobortis.
-                        </p>
-                        <div className="location">
-                          <span>Location:</span> Hall 1 , Building A, Golden
-                          Street, San Francisco, CA
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                className="tab-pane fade"
-                id="wednesday"
-                role="tabpanel"
-                aria-labelledby="wednesday-tab"
-              >
-                <div id="accordion3">
-                  <div className="card">
-                    <div id="headingOne3">
-                      <div
-                        className="collapsed card-header"
-                        data-toggle="collapse"
-                        data-target="#collapseOne3"
-                        aria-expanded="false"
-                        aria-controls="collapseOne3"
-                      >
-                        <div className="images-box">
-                          <img
-                            className="img-fluid"
-                            src="assets/img/speaker/speakers-1.jpg"
-                            alt=""
-                          />
-                        </div>
-                        <span className="time">10am - 12:30pm</span>
-                        <h4>Web Design Principles and Best Practices</h4>
-                        <h5 className="name">David Warner</h5>
-                      </div>
-                    </div>
-                    <div
-                      id="collapseOne3"
-                      className="collapse show"
-                      aria-labelledby="headingOne3"
-                      data-parent="#accordion3"
-                    >
-                      <div className="card-body">
-                        <p>
-                          Consectetur adipisicing elit. Quod distinctio impedit
-                          sint accusantium ducimus lites consequuntur innobisl
-                          dolores saepe.Proin sit amet turpis lobortis.
-                        </p>
-                        <div className="location">
-                          <span>Location:</span> Hall 1 , Building A, Golden
-                          Street, San Francisco, CA
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="card">
-                    <div id="headingTwo3">
-                      <div
-                        className="collapsed card-header"
-                        data-toggle="collapse"
-                        data-target="#collapseTwo3"
-                        aria-expanded="false"
-                        aria-controls="collapseTwo3"
-                      >
-                        <div className="images-box">
-                          <img
-                            className="img-fluid"
-                            src="assets/img/speaker/speakers-2.jpg"
-                            alt=""
-                          />
-                        </div>
-                        <span className="time">10am - 12:30pm</span>
-                        <h4>Web Design Principles and Best Practices</h4>
-                        <h5 className="name">David Warner</h5>
-                      </div>
-                    </div>
-                    <div
-                      id="collapseTwo3"
-                      className="collapse"
-                      aria-labelledby="headingTwo3"
-                      data-parent="#accordion3"
-                    >
-                      <div className="card-body">
-                        <p>
-                          Consectetur adipisicing elit. Quod distinctio impedit
-                          sint accusantium ducimus lites consequuntur innobisl
-                          dolores saepe.Proin sit amet turpis lobortis.
-                        </p>
-                        <div className="location">
-                          <span>Location:</span> Hall 1 , Building A, Golden
-                          Street, San Francisco, CA
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="card">
-                    <div id="headingThree3">
-                      <div
-                        className="collapsed card-header"
-                        data-toggle="collapse"
-                        data-target="#collapseThree3"
-                        aria-expanded="false"
-                        aria-controls="collapseThree3"
-                      >
-                        <div className="images-box">
-                          <img
-                            className="img-fluid"
-                            src="assets/img/speaker/speakers-3.jpg"
-                            alt=""
-                          />
-                        </div>
-                        <span className="time">10am - 12:30pm</span>
-                        <h4>Web Design Principles and Best Practices</h4>
-                        <h5 className="name">David Warner</h5>
-                      </div>
-                    </div>
-                    <div
-                      id="collapseThree3"
-                      className="collapse"
-                      aria-labelledby="headingThree3"
-                      data-parent="#accordion3"
-                    >
-                      <div className="card-body">
-                        <p>
-                          Consectetur adipisicing elit. Quod distinctio impedit
-                          sint accusantium ducimus lites consequuntur innobisl
-                          dolores saepe.Proin sit amet turpis lobortis.
-                        </p>
-                        <div className="location">
-                          <span>Location:</span> Hall 1 , Building A, Golden
-                          Street, San Francisco, CA
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                className="tab-pane fade"
-                id="thursday"
-                role="tabpanel"
-                aria-labelledby="thursday-tab"
-              >
-                <div id="accordion4">
-                  <div className="card">
-                    <div id="headingOne">
-                      <div
-                        className="collapsed card-header"
-                        data-toggle="collapse"
-                        data-target="#collapseOne4"
-                        aria-expanded="false"
-                        aria-controls="collapseOne4"
-                      >
-                        <div className="images-box">
-                          <img
-                            className="img-fluid"
-                            src="assets/img/speaker/speakers-1.jpg"
-                            alt=""
-                          />
-                        </div>
-                        <span className="time">10am - 12:30pm</span>
-                        <h4>Web Design Principles and Best Practices</h4>
-                        <h5 className="name">David Warner</h5>
-                      </div>
-                    </div>
-                    <div
-                      id="collapseOne4"
-                      className="collapse show"
-                      aria-labelledby="headingOne"
-                      data-parent="#accordion4"
-                    >
-                      <div className="card-body">
-                        <p>
-                          Consectetur adipisicing elit. Quod distinctio impedit
-                          sint accusantium ducimus lites consequuntur innobisl
-                          dolores saepe.Proin sit amet turpis lobortis.
-                        </p>
-                        <div className="location">
-                          <span>Location:</span> Hall 1 , Building A, Golden
-                          Street, San Francisco, CA
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="card">
-                    <div id="headingTwo">
-                      <div
-                        className="collapsed card-header"
-                        data-toggle="collapse"
-                        data-target="#collapseTwo4"
-                        aria-expanded="false"
-                        aria-controls="collapseTwo4"
-                      >
-                        <div className="images-box">
-                          <img
-                            className="img-fluid"
-                            src="assets/img/speaker/speakers-2.jpg"
-                            alt=""
-                          />
-                        </div>
-                        <span className="time">10am - 12:30pm</span>
-                        <h4>Web Design Principles and Best Practices</h4>
-                        <h5 className="name">David Warner</h5>
-                      </div>
-                    </div>
-                    <div
-                      id="collapseTwo4"
-                      className="collapse"
-                      aria-labelledby="headingTwo"
-                      data-parent="#accordion4"
-                    >
-                      <div className="card-body">
-                        <p>
-                          Consectetur adipisicing elit. Quod distinctio impedit
-                          sint accusantium ducimus lites consequuntur innobisl
-                          dolores saepe.Proin sit amet turpis lobortis.
-                        </p>
-                        <div className="location">
-                          <span>Location:</span> Hall 1 , Building A, Golden
-                          Street, San Francisco, CA
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="card">
-                    <div id="headingThree4">
-                      <div
-                        className="collapsed card-header"
-                        data-toggle="collapse"
-                        data-target="#collapseThree4"
-                        aria-expanded="false"
-                        aria-controls="collapseThree4"
-                      >
-                        <div className="images-box">
-                          <img
-                            className="img-fluid"
-                            src="assets/img/speaker/speakers-3.jpg"
-                            alt=""
-                          />
-                        </div>
-                        <span className="time">10am - 12:30pm</span>
-                        <h4>Web Design Principles and Best Practices</h4>
-                        <h5 className="name">David Warner</h5>
-                      </div>
-                    </div>
-                    <div
-                      id="collapseThree4"
-                      className="collapse"
-                      aria-labelledby="headingThree"
-                      data-parent="#accordion4"
-                    >
-                      <div className="card-body">
-                        <p>
-                          Consectetur adipisicing elit. Quod distinctio impedit
-                          sint accusantium ducimus lites consequuntur innobisl
-                          dolores saepe.Proin sit amet turpis lobortis.
-                        </p>
-                        <div className="location">
-                          <span>Location:</span> Hall 1 , Building A, Golden
-                          Street, San Francisco, CA
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                className="tab-pane fade"
-                id="friday"
-                role="tabpanel"
-                aria-labelledby="friday-tab"
-              >
-                <div id="accordion">
-                  <div className="card">
-                    <div id="headingOne">
-                      <div
-                        className="collapsed card-header"
-                        data-toggle="collapse"
-                        data-target="#collapseOne"
-                        aria-expanded="false"
-                        aria-controls="collapseOne"
-                      >
-                        <div className="images-box">
-                          <img
-                            className="img-fluid"
-                            src="assets/img/speaker/speakers-1.jpg"
-                            alt=""
-                          />
-                        </div>
-                        <span className="time">10am - 12:30pm</span>
-                        <h4>Web Design Principles and Best Practices</h4>
-                        <h5 className="name">David Warner</h5>
-                      </div>
-                    </div>
-                    <div
-                      id="collapseOne"
-                      className="collapse show"
-                      aria-labelledby="headingOne"
-                      data-parent="#accordion"
-                    >
-                      <div className="card-body">
-                        <p>
-                          Consectetur adipisicing elit. Quod distinctio impedit
-                          sint accusantium ducimus lites consequuntur innobisl
-                          dolores saepe.Proin sit amet turpis lobortis.
-                        </p>
-                        <div className="location">
-                          <span>Location:</span> Hall 1 , Building A, Golden
-                          Street, San Francisco, CA
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="card">
-                    <div id="headingTwo">
-                      <div
-                        className="collapsed card-header"
-                        data-toggle="collapse"
-                        data-target="#collapseTwo"
-                        aria-expanded="false"
-                        aria-controls="collapseTwo"
-                      >
-                        <div className="images-box">
-                          <img
-                            className="img-fluid"
-                            src="assets/img/speaker/speakers-2.jpg"
-                            alt=""
-                          />
-                        </div>
-                        <span className="time">10am - 12:30pm</span>
-                        <h4>Web Design Principles and Best Practices</h4>
-                        <h5 className="name">David Warner</h5>
-                      </div>
-                    </div>
-                    <div
-                      id="collapseTwo"
-                      className="collapse"
-                      aria-labelledby="headingTwo"
-                      data-parent="#accordion"
-                    >
-                      <div className="card-body">
-                        <p>
-                          Consectetur adipisicing elit. Quod distinctio impedit
-                          sint accusantium ducimus lites consequuntur innobisl
-                          dolores saepe.Proin sit amet turpis lobortis.
-                        </p>
-                        <div className="location">
-                          <span>Location:</span> Hall 1 , Building A, Golden
-                          Street, San Francisco, CA
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="card">
-                    <div id="headingThree">
-                      <div
-                        className="collapsed card-header"
-                        data-toggle="collapse"
-                        data-target="#collapseThree"
-                        aria-expanded="false"
-                        aria-controls="collapseThree"
-                      >
-                        <div className="images-box">
-                          <img
-                            className="img-fluid"
-                            src="assets/img/speaker/speakers-3.jpg"
-                            alt=""
-                          />
-                        </div>
-                        <span className="time">10am - 12:30pm</span>
-                        <h4>Web Design Principles and Best Practices</h4>
-                        <h5 className="name">David Warner</h5>
-                      </div>
-                    </div>
-                    <div
-                      id="collapseThree"
-                      className="collapse"
-                      aria-labelledby="headingThree"
-                      data-parent="#accordion"
-                    >
-                      <div className="card-body">
-                        <p>
-                          Consectetur adipisicing elit. Quod distinctio impedit
-                          sint accusantium ducimus lites consequuntur innobisl
-                          dolores saepe.Proin sit amet turpis lobortis.
-                        </p>
-                        <div className="location">
-                          <span>Location:</span> Hall 1 , Building A, Golden
-                          Street, San Francisco, CA
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="tab-content" id="scheduleTabContent">
+              {tabs.map(tab => (
+                <ScheduleTabPane
+                  key={tab.id}
+                  {...tab}
+                  active={tab.id === activeTab}
+                />
+              ))}
             </div>
           </div>
         </div>
