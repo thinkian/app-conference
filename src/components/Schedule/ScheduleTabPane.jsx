@@ -1,3 +1,5 @@
+import { getTime } from '../../helpers';
+
 const ScheduleTabPane = props => {
   const { active, events, id } = props;
   const activeClass = active ? 'show active' : '';
@@ -12,19 +14,10 @@ const ScheduleTabPane = props => {
       {events.map(event => (
         <div key={event.activity} className="card">
           <div className="card-header">
-            {event.speakerImageUrl ? (
-              <div className="card-image">
-                <img
-                  className="img-fluid"
-                  src={event.speakerImageUrl}
-                  alt={event.speakers}
-                />
-              </div>
-            ) : null}
             <div className="card-header-content">
               <p className="card-header-info">
                 <span>
-                  {event.startTime} - {event.endTime}
+                  {getTime(event.start)} - {getTime(event.end)}
                 </span>
                 <span>
                   {', '}
@@ -32,7 +25,11 @@ const ScheduleTabPane = props => {
                 </span>
               </p>
               <h4 className="card-header-title">{event.activity}</h4>
-              <p className="card-header-subtitle">{event.speakers}</p>
+              <p className="card-header-subtitle">
+                {event.speakers && event.speakers.length
+                  ? event.speakers.join(', ')
+                  : null}
+              </p>
             </div>
           </div>
         </div>

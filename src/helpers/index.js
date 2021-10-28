@@ -23,3 +23,16 @@ export const getFields = data => {
 
   return [];
 };
+
+export const getTime = dateStr => {
+  if (!dateStr) {
+    return null;
+  }
+
+  return new Date(dateStr)
+    .toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+    .toLowerCase();
+};

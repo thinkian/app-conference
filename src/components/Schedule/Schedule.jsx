@@ -3,6 +3,7 @@ import { useNav, useTabs } from '../../hooks';
 import ScheduleTabPane from './ScheduleTabPane';
 
 const Schedule = () => {
+  // TODO: Fetch event schedule
   const tabs = [
     {
       id: 'dayOne',
@@ -11,18 +12,16 @@ const Schedule = () => {
       events: [
         {
           activity: 'Web Design Principles and Best Practices',
-          startTime: '10am',
-          endTime: '12:30pm',
+          start: '2021-11-18 10:00',
+          end: '2021-11-18 12:30',
           speakers: ['David Warner'],
-          speakerImageUrl: 'assets/img/speaker/speakers-2.jpg',
           location: 'Standford Hall'
         },
         {
           activity: 'Building the MVP on Time and on Budget',
-          startTime: '2pm',
-          endTime: '4pm',
+          start: '2021-11-18 14:00',
+          end: '2021-11-18 16:00',
           speakers: ['Yara Smith'],
-          speakerImageUrl: 'assets/img/speaker/speakers-1.jpg',
           location: 'Auditorium C'
         }
       ]
@@ -35,24 +34,22 @@ const Schedule = () => {
         {
           activity:
             'Engineering Management: Bringing Change to an Organization',
-          startTime: '11am',
-          endTime: '12pm',
+          start: '2021-11-19 11:00',
+          end: '2021-11-19 12:00',
           speakers: ['Patricia Green'],
-          speakerImageUrl: 'assets/img/speaker/speakers-3.jpg',
           location: 'Standford Hall'
         },
         {
           activity: 'Debugging is Easier with the Right Tools',
-          startTime: '1:30pm',
-          endTime: '3:30pm',
+          start: '2021-11-19 13:30',
+          end: '2021-11-19 15:30',
           speakers: ['Daryl Dixon'],
-          speakerImageUrl: 'assets/img/speaker/speakers-4.jpg',
           location: 'Auditorium B'
         }
       ]
     }
   ];
-  const [activeTab, handleClick] = useTabs(tabs[0].id);
+  const [activeTab, handleClick] = useTabs('dayOne');
   const navRef = useNav('schedule');
 
   return (
