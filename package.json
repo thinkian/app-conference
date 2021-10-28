@@ -1,5 +1,5 @@
 {
-  "name": "react-static-example-blank",
+  "name": "app-conference",
   "private": true,
   "scripts": {
     "start": "env-cmd react-static start",
@@ -16,15 +16,12 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-hot-loader": "^4.13.0",
-    "react-static": "^7.5.3",
-    "react-static-plugin-reach-router": "^7.5.1",
-    "react-static-plugin-sass": "^7.3.0",
-    "react-static-plugin-sitemap": "^7.5.1",
-    "react-static-plugin-source-filesystem": "^7.5.1",
+    "react-static": "^7.6.2",
+    "react-static-plugin-sass": "^7.6.2",
     "wowjs": "^1.1.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.5",
+    "@babel/core": "^7.15.8",
     "@babel/preset-react": "^7.14.5",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
@@ -34,7 +31,7 @@
     "eslint-config-react-app": "^6.0.0",
     "eslint-config-react-tools": "^1.1.7",
     "eslint-plugin-flowtype": "^5.10.0",
-    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^4.2.0",
