@@ -48,7 +48,7 @@ export const useContactForm = () => {
   const [message, setMessage] = useState('');
   const handleSubmit = async event => {
     const form = event.target;
-    const { parentNode } = form;
+    const { elements, parentNode } = form;
     const isValid = form.checkValidity();
     const invalidInputs = form.querySelectorAll(':invalid');
     const validInputs = form.querySelectorAll(':valid');
@@ -73,7 +73,13 @@ export const useContactForm = () => {
       return;
     }
 
-    // TODO: Handle submit
+    await getBase('📧 Contact').create({
+      Name: elements.name.value,
+      Email: elements.email.value,
+      Subject: elements.subject.value,
+      Message: elements.message.value
+    });
+
     setMessage('Message submitted!');
     form.reset();
   };
