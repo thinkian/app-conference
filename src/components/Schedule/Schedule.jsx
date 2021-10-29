@@ -1,56 +1,45 @@
+import { useEffect, useState } from 'react';
+
+import { getBase, getFields } from '../../helpers';
 import { useNav, useTabs } from '../../hooks';
 
 import ScheduleTabPane from './ScheduleTabPane';
 
 const Schedule = () => {
-  // TODO: Fetch event schedule
-  const tabs = [
-    {
-      id: 'dayOne',
-      title: 'Day One',
-      subtitle: 'November 18',
-      events: [
-        {
-          activity: 'Web Design Principles and Best Practices',
-          start: '2021-11-18 10:00',
-          end: '2021-11-18 12:30',
-          speakers: ['David Warner'],
-          location: 'Standford Hall'
-        },
-        {
-          activity: 'Building the MVP on Time and on Budget',
-          start: '2021-11-18 14:00',
-          end: '2021-11-18 16:00',
-          speakers: ['Yara Smith'],
-          location: 'Auditorium C'
-        }
-      ]
-    },
-    {
-      id: 'dayTwo',
-      title: 'Day Two',
-      subtitle: 'November 19',
-      events: [
-        {
-          activity:
-            'Engineering Management: Bringing Change to an Organization',
-          start: '2021-11-19 11:00',
-          end: '2021-11-19 12:00',
-          speakers: ['Patricia Green'],
-          location: 'Standford Hall'
-        },
-        {
-          activity: 'Debugging is Easier with the Right Tools',
-          start: '2021-11-19 13:30',
-          end: '2021-11-19 15:30',
-          speakers: ['Daryl Dixon'],
-          location: 'Auditorium B'
-        }
-      ]
-    }
-  ];
+  const [tabs, setTabs] = useState([]);
   const [activeTab, handleClick] = useTabs('dayOne');
   const navRef = useNav('schedule');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const dayOneData = await getBase('📆 Schedule')
+        .select({ view: 'Day One schedule' })
+        .firstPage();
+      const dayOneSchedule = getFields(dayOneData);
+      const dayTwoData = await getBase('📆 Schedule')
+        .select({ view: 'Day Two schedule' })
+        .firstPage();
+      const dayTwoSchedule = getFields(dayTwoData);
+      const schedule = [
+        {
+          id: 'dayOne',
+          title: 'Day One',
+          subtitle: 'February 18',
+          events: dayOneSchedule
+        },
+        {
+          id: 'dayTwo',
+          title: 'Day Two',
+          subtitle: 'February 19',
+          events: dayTwoSchedule
+        }
+      ];
+
+      setTabs(schedule);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <section
