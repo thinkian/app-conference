@@ -1,8 +1,24 @@
+import { useEffect, useState } from 'react';
+
+import { getBase, getFields } from '../../helpers';
 import { useCountdown } from '../../hooks';
 
 const Countdown = () => {
-  // TODO: Update countdown date
-  const countdown = useCountdown('2021-09-01');
+  const [startDate, setStartDate] = useState('');
+  const countdown = useCountdown(startDate);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const base = await getBase('📆 Schedule')
+        .select({ maxRecords: 1 })
+        .firstPage();
+      const [field] = getFields(base);
+
+      setStartDate(field.start);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <section className="countdown-timer section-padding">
