@@ -1,6 +1,7 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 
 import { NavContext } from '../context';
+import { getBase, getFields } from '../helpers';
 
 let WOW;
 
@@ -275,8 +276,15 @@ export const useSpeakers = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // TODO: Fetch speakers
-      // setSpeakers(speakers);
+      const data = await getBase('🎤 Speakers')
+        .select({
+          view: 'All speakers',
+          fields: ['Name', 'Role', 'Company', 'Image'],
+          filterByFormula: 'AND({Confirmed?}, {Speaking at})'
+        })
+        .firstPage();
+      const speakers = getFields(data);
+      setSpeakers(speakers);
     };
 
     fetchData();
