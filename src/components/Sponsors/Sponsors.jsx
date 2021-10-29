@@ -1,32 +1,30 @@
+import { useEffect, useState } from 'react';
+
+import { getBase } from '../../helpers';
 import { useNav } from '../../hooks';
 
 import Sponsor from './Sponsor';
 
 const Sponsors = () => {
+  const [sponsors, setSponsors] = useState([]);
   const navRef = useNav('sponsors');
-  // TODO: Fetch sponsors
-  const sponsors = [
-    {
-      name: 'Sponsor 1',
-      image: 'assets/img/sponsors/logo-01.png',
-      url: '#'
-    },
-    {
-      name: 'Sponsor 2',
-      image: 'assets/img/sponsors/logo-02.png',
-      url: '#'
-    },
-    {
-      name: 'Sponsor 3',
-      image: 'assets/img/sponsors/logo-03.png',
-      url: '#'
-    },
-    {
-      name: 'Sponsor 4',
-      image: 'assets/img/sponsors/logo-04.png',
-      url: '#'
-    }
-  ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const records = await getBase('💸 Sponsors').select().firstPage();
+      const fields = records.map(record => {
+        return {
+          name: record.fields.Name,
+          image: record.fields.Image[0].url,
+          url: record.fields.URL
+        };
+      });
+
+      setSponsors(fields);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <section
