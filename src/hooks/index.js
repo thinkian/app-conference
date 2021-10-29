@@ -167,7 +167,7 @@ export const useNewsletter = () => {
       return;
     }
 
-    // TODO: Handle submit
+    await getBase('🗞 Subscribers').create({ Email: value.trim() });
 
     setMessage('Thanks for signing up!');
     target.reset();
