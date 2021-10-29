@@ -2,12 +2,11 @@
   "name": "app-conference",
   "private": true,
   "scripts": {
-    "start": "env-cmd react-static start",
-    "stage": "env-cmd react-static build --staging",
+    "analyze": "env-cmd react-static build --analyze",
     "build": "env-cmd react-static build",
-    "analyze": "react-static build --analyze",
     "lint": "eslint src/",
-    "serve": "serve dist -p 3000"
+    "serve": "serve dist -p 3000",
+    "start": "env-cmd react-static start"
   },
   "dependencies": {
     "airtable": "^0.11.1",
