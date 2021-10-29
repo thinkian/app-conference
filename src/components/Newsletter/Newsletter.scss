@@ -1,54 +1,53 @@
 $preset: #e91e63;
 
-/* Subscribe Form */
-#subscribe {
+.newsletter-section {
   background: #f2f2f2;
 }
+
 .subscribe-inner {
   padding: 50px 0;
   text-align: center;
+
   .subscribe-title {
-    font-size: 36px;
     margin-bottom: 30px;
+
+    @include responsive($screen-mobile) {
+      font-size: 24px;
+    }
   }
+
   p {
     color: #888;
     margin-bottom: 30px;
   }
-  .sub-btn {
+}
+
+.subscribe-form {
+  .subscribe-btn {
+    min-width: 12em;
     margin: 0;
-    width: 12rem;
-    padding: 18px 40px;
-    min-width: 12rem;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
+    padding: 16px 40px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
     i {
       margin-right: 5px;
     }
   }
+
   .form-control {
-    position: relative;
     background: #fff;
-    border: 1px solid $preset;
-    border-radius: 0px;
+    border-radius: 0;
     box-shadow: none;
-    color: #888999;
     height: 55px;
-    margin-right: -1px;
     width: 90%;
-  }
-  .form-control:focus {
-    color: #212121;
-    background-color: #fff;
-    border-color: $preset;
-    outline: 0;
-  }
-  .form-inline {
-    position: relative;
-    margin-bottom: 30px;
-    margin: 0 auto;
-    width: 100%;
+    font-size: 14px;
+
+    &:focus {
+      color: #212121;
+      background-color: #fff;
+      border-color: $preset;
+      outline: 0;
+    }
   }
 }

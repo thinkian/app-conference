@@ -4,7 +4,7 @@ const Newsletter = () => {
   const handleSubmit = useNewsletter();
 
   return (
-    <div id="subscribe" className="section-padding">
+    <div id="subscribe" className="newsletter-section section-padding">
       <div className="container">
         <div className="row justify-content-md-center">
           <div className="col-md-10 col-lg-7">
@@ -14,7 +14,7 @@ const Newsletter = () => {
             >
               <h2 className="subscribe-title">Sign Up For Our Newsletter</h2>
               <form
-                className="text-center form-inline"
+                className="subscribe-form form-inline flex-nowrap"
                 onSubmit={handleSubmit}
                 method="post"
                 autoComplete="off"
@@ -29,7 +29,7 @@ const Newsletter = () => {
                 />
                 <button
                   type="submit"
-                  className="btn btn-common sub-btn"
+                  className="subscribe-btn btn btn-common"
                   data-style="zoom-in"
                   data-spinner-size="30"
                   name="submit"

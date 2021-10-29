@@ -1,15 +1,7 @@
-/* ==========================================================================
-   Countdown Style Start
-   ========================================================================== */
 .countdown-timer {
   .heading-count {
     padding: 10px 68px;
-    h2 {
-      font-size: 40px;
-      color: #212121;
-      text-transform: uppercase;
-      line-height: 48px;
-    }
+
     h4 {
       font-size: 24px;
       font-weight: 300;
@@ -28,13 +20,11 @@
     }
   }
 }
-.time-count div {
-  text-align: center;
-}
+
 .time-entry {
   display: inline-block;
-  min-width: 120px;
   margin: 15px;
+  min-width: 120px;
   height: 110px;
   padding: 20px;
   box-shadow: 1px 10px 20px rgba(0, 0, 0, 0.2);
@@ -47,6 +37,11 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   line-height: 22px;
+
+  &:first-child {
+    border-left: none;
+  }
+
   span {
     font-size: 45px;
     line-height: 45px;
@@ -56,9 +51,7 @@
     margin-bottom: 10px;
   }
 }
-.time-entry:first-child {
-  border-left: none;
-}
+
 .time-countdown {
   margin: 15px 0px 50px 0;
 }

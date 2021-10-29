@@ -6,7 +6,11 @@ const Contact = () => {
   const msgClass = message ? 'animated tada' : 'hidden';
 
   return (
-    <section ref={navRef} id="contact" className="section-padding">
+    <section
+      ref={navRef}
+      id="contact"
+      className="contact-section section-padding"
+    >
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-12">

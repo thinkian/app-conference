@@ -1,7 +1,8 @@
 $preset: #e91e63;
 
 .team-item {
-  margin: 15px 0;
+  max-width: 330px;
+  margin: 15px auto;
   padding: 10px;
   border-radius: 4px;
   position: relative;
@@ -19,77 +20,74 @@ $preset: #e91e63;
       transform: translateY(0);
     }
   }
+}
 
-  .team-img {
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-  }
+.team-img {
+  cursor: pointer;
+  overflow: hidden;
+}
 
-  .team-overlay {
-    height: 100%;
-    position: absolute;
-    top: 0;
-    background: rgba(47, 47, 47, 0.7);
-    opacity: 0;
-    width: 100%;
+.team-overlay {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background: rgba(47, 47, 47, 0.7);
+  opacity: 0;
+  width: 100%;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.overlay-social-icon {
+  color: #fff;
+  top: 15px;
+  position: absolute;
+  right: 15px;
+
+  .social-icons {
+    padding-left: 0;
     transition: all 0.3s ease-in-out 0s;
-  }
 
-  .overlay-social-icon {
-    color: #fff;
-    top: 15px;
-    position: absolute;
-    right: 15px;
+    li {
+      display: inline-block;
+      margin: 0 4px;
 
-    .social-icons {
-      padding-left: 0;
-      transition: all 0.3s ease-in-out 0s;
-
-      li {
-        display: inline-block;
-        margin: 0 4px;
-
-        a {
-          letter-spacing: 0;
-
-          i {
-            font-size: 20px;
-            color: #fff;
-            width: 36px;
-            height: 36px;
-            background: $preset;
-            display: block;
-            border-radius: 4px;
-            line-height: 36px;
-            transition: all 0.3s ease-in-out 0s;
-            -moz-transition: all 0.3s ease-in-out 0s;
-            -webkit-transition: all 0.3s ease-in-out 0s;
-            -o-transition: all 0.3s ease-in-out 0s;
-          }
-        }
-
-        a:hover .fa-facebook {
+      a:hover {
+        .fa-facebook {
           background: #3b5998;
         }
-        a:hover .fa-twitter {
+
+        .fa-twitter {
           background: #00aced;
         }
-        a:hover .fa-instagram {
+
+        .fa-instagram {
           background: #fb3958;
         }
       }
     }
-  }
 
+    i {
+      display: block;
+      width: 36px;
+      height: 36px;
+      background: $preset;
+      border-radius: 4px;
+      line-height: 36px;
+      transition: all 0.3s ease-in-out 0s;
+      color: #fff;
+      font-size: 20px;
+    }
+  }
+}
+
+.speakers-section {
   .info-text {
     position: absolute;
-    bottom: 10px;
-    left: 10px;
-    width: 330px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     padding: 15px 20px;
     background: #f3f4f3;
-    text-align: left;
 
     h3 {
       font-size: 16px;

@@ -103,27 +103,27 @@ const Footer = () => {
             >
               <h3>SUBSCRIBE</h3>
               <div className="widget">
-                <div className="newsletter-wrapper">
-                  <form method="post" onSubmit={handleSubmit} noValidate>
-                    <div className="form-group is-empty">
-                      <input
-                        type="email"
-                        name="email"
-                        className="form-control"
-                        placeholder="Your email"
-                        required
-                      />
-                      <button
-                        type="submit"
-                        name="subscribe"
-                        className="btn btn-common sub-btn"
-                      >
-                        <i className="lni-pointer"></i>
-                      </button>
-                      <div className="clearfix"></div>
-                    </div>
-                  </form>
-                </div>
+                <form
+                  className="subscribe-form form-inline flex-nowrap"
+                  method="post"
+                  onSubmit={handleSubmit}
+                  noValidate
+                >
+                  <input
+                    type="email"
+                    name="email"
+                    className="form-control"
+                    placeholder="Your email"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    name="subscribe"
+                    className="subscribe-btn btn btn-common"
+                  >
+                    <i className="lni-pointer"></i>
+                  </button>
+                </form>
               </div>
 
               <div className="widget">
@@ -156,7 +156,7 @@ const Footer = () => {
         </div>
       </footer>
 
-      <div id="copyright">
+      <div className="copyright">
         <div className="container">
           <div className="row">
             <div className="col-md-12">

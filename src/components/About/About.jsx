@@ -2,17 +2,14 @@ import { useNav } from '../../hooks';
 
 const About = () => {
   const navRef = useNav('about');
+  // TODO: Replace static content
 
   return (
-    <section
-      ref={navRef}
-      id="about"
-      className="counter-section section-padding"
-    >
+    <section ref={navRef} id="about" className="about-section section-padding">
       <div className="container">
         <div className="row">
           <div className="col-md-6 col-lg-3 col-xs-12 work-counter-widget text-center">
-            <div className="counter wow fadeInRight" data-wow-delay="0.3s">
+            <div className="about-item wow fadeInRight" data-wow-delay="0.3s">
               <div className="icon">
                 <i className="lni-map"></i>
               </div>
@@ -22,7 +19,7 @@ const About = () => {
           </div>
 
           <div className="col-md-6 col-lg-3 col-xs-12 work-counter-widget text-center">
-            <div className="counter wow fadeInRight" data-wow-delay="0.6s">
+            <div className="about-item wow fadeInRight" data-wow-delay="0.6s">
               <div className="icon">
                 <i className="lni-timer"></i>
               </div>
@@ -32,7 +29,7 @@ const About = () => {
           </div>
 
           <div className="col-md-6 col-lg-3 col-xs-12 work-counter-widget text-center">
-            <div className="counter wow fadeInRight" data-wow-delay="0.9s">
+            <div className="about-item wow fadeInRight" data-wow-delay="0.9s">
               <div className="icon">
                 <i className="lni-users"></i>
               </div>
@@ -42,12 +39,12 @@ const About = () => {
           </div>
 
           <div className="col-md-6 col-lg-3 col-xs-12 work-counter-widget text-center">
-            <div className="counter wow fadeInRight" data-wow-delay="1.2s">
+            <div className="about-item wow fadeInRight" data-wow-delay="1.2s">
               <div className="icon">
                 <i className="lni-coffee-cup"></i>
               </div>
               <p>Free Lunch &amp; Snacks</p>
-              <span>Don’t miss it</span>
+              <span>Don't miss it</span>
             </div>
           </div>
         </div>

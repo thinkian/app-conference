@@ -9,7 +9,11 @@ const Speakers = () => {
   useAnimations(speakers);
 
   return (
-    <section ref={navRef} id="speakers" className="section-padding text-center">
+    <section
+      ref={navRef}
+      id="speakers"
+      className="speakers-section section-padding"
+    >
       <div className="container">
         <div className="row">
           <div className="col-12">

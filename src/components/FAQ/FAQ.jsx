@@ -4,6 +4,7 @@ import Question from './Question';
 
 const FAQ = () => {
   const navRef = useNav('faq');
+  // TODO: Fetch FAQs
   const questions = [
     {
       question: 'How do I register for the conference?',
@@ -51,7 +52,7 @@ const FAQ = () => {
   const secondHalf = questions.slice(half, questions.length);
 
   return (
-    <section ref={navRef} id="faq" className="faq section-padding">
+    <section ref={navRef} id="faq" className="faq-section section-padding">
       <div className="container">
         <div className="row">
           <div className="col-12">

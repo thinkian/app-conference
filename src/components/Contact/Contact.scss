@@ -1,50 +1,52 @@
 $preset: #e91e63;
 
-.contact-form {
-  padding: 40px 15px;
-}
-
-.form-wrapper {
-  background-color: white;
-  padding: 56px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-}
-
-.form-control {
-  display: block;
-  width: 100%;
-  line-height: 26px;
-  font-size: 14px;
-  box-shadow: none;
-  color: #848484;
-  background: #f7f7f7;
-  border: 1px solid #e5e5e5;
-  padding: 7px 19px;
-  border-radius: 0;
-  background-image: none;
-  background-clip: padding-box;
-  transition: all 500ms ease;
-
-  &:focus {
-    color: #212121;
-    background-color: #fff;
-    border-color: $preset;
-    box-shadow: none;
-    outline: 0;
+.contact-section {
+  .contact-form {
+    padding: 40px 15px;
   }
 
-  &.is-invalid + .help-block {
+  .form-wrapper {
+    background-color: white;
+    padding: 56px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .form-control {
     display: block;
-  }
-}
-
-.help-block {
-  display: none;
-}
-
-.form-submit {
-  .btn-common {
     width: 100%;
-    margin-bottom: 20px;
+    line-height: 26px;
+    font-size: 14px;
+    box-shadow: none;
+    color: #848484;
+    background: #f7f7f7;
+    border: 1px solid #e5e5e5;
+    padding: 7px 19px;
+    border-radius: 0;
+    background-image: none;
+    background-clip: padding-box;
+    transition: all 500ms ease;
+
+    &:focus {
+      color: #212121;
+      background-color: #fff;
+      border-color: $preset;
+      box-shadow: none;
+      outline: 0;
+    }
+
+    &.is-invalid + .help-block {
+      display: block;
+    }
+  }
+
+  .help-block {
+    display: none;
+  }
+
+  .form-submit {
+    .btn-common {
+      width: 100%;
+      margin-bottom: 20px;
+    }
   }
 }

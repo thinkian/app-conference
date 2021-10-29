@@ -10,7 +10,10 @@ const Countdown = () => {
         <div className="row text-center">
           <div className="col-md-12 col-sm-12 col-xs-12">
             <div className="heading-count">
-              <h2 className="wow fadeInDown" data-wow-delay="0.2s">
+              <h2
+                className="section-subtitle wow fadeInDown"
+                data-wow-delay="0.2s"
+              >
                 Tickets Go On Sale In
               </h2>
             </div>

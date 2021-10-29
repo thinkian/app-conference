@@ -1,4 +1,11 @@
 $preset: #e91e63;
+$screen-mobile: 979px;
+
+@mixin responsive($breakpoint: $screen-mobile) {
+  @media screen and (max-width: $breakpoint) {
+    @content;
+  }
+}
 
 @import '~animate.css/animate.compat.css';
 @import '~bootstrap/dist/css/bootstrap.min.css';
@@ -6,5 +13,4 @@ $preset: #e91e63;
 @import '../public/assets/fonts/line-icons.css';
 
 @import './styles/global';
-@import './styles/responsive';
-@import './components/index.scss';
+@import './components/index';

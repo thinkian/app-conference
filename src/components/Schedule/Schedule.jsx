@@ -53,7 +53,11 @@ const Schedule = () => {
   const navRef = useNav('schedule');
 
   return (
-    <section ref={navRef} id="schedule" className="schedule section-padding">
+    <section
+      ref={navRef}
+      id="schedule"
+      className="schedule-section section-padding"
+    >
       <div className="container">
         <div className="row">
           <div className="col-12">

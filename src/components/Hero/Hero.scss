@@ -1,10 +1,15 @@
 .app-hero {
   position: relative;
   min-height: 450px;
+  margin-bottom: 0;
   background-image: url('./images/product-school-dJICd7b_LlE-unsplash.jpg');
   background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: 0 -400px;
+  background-size: cover;
+  background-position: center center;
+
+  @include responsive($screen-mobile) {
+    min-height: 0;
+  }
 
   &::after {
     content: '';
@@ -23,6 +28,14 @@
     color: white;
     text-align: center;
     padding: 5em 0;
+
+    @include responsive($screen-mobile) {
+      padding: 3em 0 2em;
+
+      .display-4 {
+        font-size: 3rem;
+      }
+    }
 
     .lead {
       margin-bottom: 3em;
