@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import { useNewsletter, useSmoothScroll } from '../../hooks';
 
 const Footer = () => {
-  const handleSubmit = useNewsletter();
+  const [handleSubmit] = useNewsletter();
   const [handleClick] = useSmoothScroll();
 
   return (

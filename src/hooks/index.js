@@ -149,6 +149,8 @@ export const useNav = navLinkId => {
 };
 
 export const useNewsletter = () => {
+  const [message, setMessage] = useState('');
+
   const handleSubmit = async event => {
     const { target } = event;
     const { value } = target.elements.email;
@@ -166,10 +168,19 @@ export const useNewsletter = () => {
 
     // TODO: Handle submit
 
+    setMessage('Thanks for signing up!');
     target.reset();
   };
 
-  return handleSubmit;
+  useEffect(() => {
+    if (message) {
+      setTimeout(() => {
+        setMessage('');
+      }, 3000);
+    }
+  }, [message]);
+
+  return [handleSubmit, message];
 };
 
 export const useOnScreen = ref => {

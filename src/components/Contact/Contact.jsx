@@ -111,7 +111,6 @@ const Contact = () => {
                           Send Us Now
                         </button>
                         <div
-                          id="msgSubmit"
                           className={`h5 text-center text-success ${msgClass}`}
                         >
                           {message}

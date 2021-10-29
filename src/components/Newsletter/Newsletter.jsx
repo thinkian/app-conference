@@ -1,7 +1,8 @@
 import { useNewsletter } from '../../hooks';
 
 const Newsletter = () => {
-  const handleSubmit = useNewsletter();
+  const [handleSubmit, message] = useNewsletter();
+  const msgClass = message ? 'animated tada' : 'hidden';
 
   return (
     <div id="subscribe" className="newsletter-section section-padding">
@@ -14,7 +15,7 @@ const Newsletter = () => {
             >
               <h2 className="subscribe-title">Sign Up For Our Newsletter</h2>
               <form
-                className="subscribe-form form-inline flex-nowrap"
+                className="subscribe-form form-inline flex-nowrap mb-3"
                 onSubmit={handleSubmit}
                 method="post"
                 autoComplete="off"
@@ -40,6 +41,9 @@ const Newsletter = () => {
                   </span>
                 </button>
               </form>
+              <div className={`h5 text-center text-success ${msgClass}`}>
+                {message}
+              </div>
             </div>
           </div>
         </div>
