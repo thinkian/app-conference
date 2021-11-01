@@ -18,6 +18,15 @@ const config = {
       <Body>{children}</Body>
     </Html>
   ),
+  siteRoot: 'https://thinkian.github.io',
+  basePath: 'app-conference',
+  getRoutes: async () => {
+    return [
+      {
+        path: '/'
+      }
+    ];
+  },
   plugins: [
     [
       'react-static-plugin-sass',
