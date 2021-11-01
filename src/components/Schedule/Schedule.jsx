@@ -1,45 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useRouteData } from 'react-static';
 
-import { getBase, getFields } from '../../helpers';
 import { useNav, useTabs } from '../../hooks';
 
 import ScheduleTabPane from './ScheduleTabPane';
 
 const Schedule = () => {
-  const [tabs, setTabs] = useState([]);
   const [activeTab, handleClick] = useTabs('dayOne');
   const navRef = useNav('schedule');
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const dayOneData = await getBase('📆 Schedule')
-        .select({ view: 'Day One schedule' })
-        .firstPage();
-      const dayOneSchedule = getFields(dayOneData);
-      const dayTwoData = await getBase('📆 Schedule')
-        .select({ view: 'Day Two schedule' })
-        .firstPage();
-      const dayTwoSchedule = getFields(dayTwoData);
-      const schedule = [
-        {
-          id: 'dayOne',
-          title: 'Day One',
-          subtitle: 'February 18',
-          events: dayOneSchedule
-        },
-        {
-          id: 'dayTwo',
-          title: 'Day Two',
-          subtitle: 'February 19',
-          events: dayTwoSchedule
-        }
-      ];
-
-      setTabs(schedule);
-    };
-
-    fetchData();
-  }, []);
+  const { schedule: tabs } = useRouteData();
 
   return (
     <section

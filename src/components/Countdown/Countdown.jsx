@@ -1,24 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useRouteData } from 'react-static';
 
-import { getBase, getFields } from '../../helpers';
 import { useCountdown } from '../../hooks';
 
 const Countdown = () => {
-  const [startDate, setStartDate] = useState('');
+  const { startDate } = useRouteData();
   const countdown = useCountdown(startDate);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const base = await getBase('📆 Schedule')
-        .select({ maxRecords: 1 })
-        .firstPage();
-      const [field] = getFields(base);
-
-      setStartDate(field.start);
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <section className="countdown-timer section-padding">

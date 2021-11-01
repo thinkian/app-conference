@@ -1,30 +1,11 @@
-import { useEffect, useState } from 'react';
-
-import { getBase } from '../../helpers';
+import { useRouteData } from 'react-static';
 import { useNav } from '../../hooks';
 
 import Sponsor from './Sponsor';
 
 const Sponsors = () => {
-  const [sponsors, setSponsors] = useState([]);
   const navRef = useNav('sponsors');
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const records = await getBase('💸 Sponsors').select().firstPage();
-      const fields = records.map(record => {
-        return {
-          name: record.fields.Name,
-          image: record.fields.Image[0].url,
-          url: record.fields.URL
-        };
-      });
-
-      setSponsors(fields);
-    };
-
-    fetchData();
-  }, []);
+  const { sponsors } = useRouteData();
 
   return (
     <section

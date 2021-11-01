@@ -1,7 +1,8 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { useRouteData } from 'react-static';
 
 import { NavContext } from '../context';
-import { getBase, getFields } from '../helpers';
+import { getBase } from '../helpers';
 
 let WOW;
 
@@ -278,25 +279,9 @@ export const useSpeakers = () => {
       index: 5
     }
   ];
-  const [speakers, setSpeakers] = useState(defaultSpeakers);
+  const { speakers } = useRouteData();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getBase('🎤 Speakers')
-        .select({
-          view: 'All speakers',
-          fields: ['Name', 'Role', 'Company', 'Image'],
-          filterByFormula: 'AND({Confirmed?}, {Speaking at})'
-        })
-        .firstPage();
-      const speakers = getFields(data);
-      setSpeakers(speakers);
-    };
-
-    fetchData();
-  }, []);
-
-  return speakers;
+  return speakers || defaultSpeakers;
 };
 
 export const useTabs = initialTab => {
