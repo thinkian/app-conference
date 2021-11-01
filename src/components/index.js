@@ -8,4 +8,5 @@ export { default as Hero } from './Hero/Hero';
 export { default as Newsletter } from './Newsletter/Newsletter';
 export { default as Schedule } from './Schedule/Schedule';
 export { default as Speakers } from './Speakers/Speakers';
+export { default as Spinner } from './Spinner/Spinner';
 export { default as Sponsors } from './Sponsors/Sponsors';

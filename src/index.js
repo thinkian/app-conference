@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
 // Your top level component
 import App from './App';
+import Spinner from './components/Spinner/Spinner';
 import './index.scss';
 
 // Export your top level component as JSX (for static rendering)
@@ -20,7 +21,9 @@ if (typeof document !== 'undefined') {
   const render = Comp => {
     renderMethod(
       <AppContainer>
-        <Comp />
+        <Suspense fallback={<Spinner />}>
+          <Comp />
+        </Suspense>
       </AppContainer>,
       target
     );
