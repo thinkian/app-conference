@@ -85,20 +85,6 @@ $preset: #e91e63;
   }
 }
 
-/* only small tablets */
-@media (min-width: 768px) and (max-width: 991px) {
-  #nav-main li a.nav-link {
-    padding-top: 18px;
-  }
-}
-.navbar-toggler {
-  display: none;
-}
-
-.mobile-menu {
-  display: none;
-}
-
 @media screen and (max-width: 768px) {
   .navbar-header {
     width: 100%;

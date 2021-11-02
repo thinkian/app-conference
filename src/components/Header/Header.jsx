@@ -65,20 +65,6 @@ const Header = () => {
       >
         <div className="container">
           <div className="navbar-header">
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#main-navbar"
-              aria-controls="main-navbar"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-              <span className="icon-menu"></span>
-              <span className="icon-menu"></span>
-              <span className="icon-menu"></span>
-            </button>
             <a href="/" className="navbar-brand">
               <img src="assets/img/logo.png" alt="" />
             </a>
@@ -87,15 +73,6 @@ const Header = () => {
             <Navbar links={links} />
           </div>
         </div>
-        <ul className="mobile-menu">
-          {links.map(link => (
-            <li key={link.to}>
-              <a className="page-scroll" href={link.to}>
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
       </nav>
     </header>
   );

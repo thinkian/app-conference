@@ -10,9 +10,9 @@ import {
   Schedule,
   Speakers,
   Sponsors
-} from '..';
-import { NavProvider } from '../../context';
-import { useAnimations } from '../../hooks';
+} from '../components';
+import { NavProvider } from '../context';
+import { useAnimations } from '../hooks';
 
 const Home = () => {
   useAnimations();

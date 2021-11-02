@@ -1,3 +1,4 @@
+import path from 'path';
 import React from 'react';
 
 // This file is used to configure:
@@ -18,8 +19,6 @@ const config = {
       <Body>{children}</Body>
     </Html>
   ),
-  siteRoot: 'https://thinkian.github.io',
-  basePath: 'app-conference',
   getRoutes: async () => {
     return [
       {
@@ -28,6 +27,12 @@ const config = {
     ];
   },
   plugins: [
+    [
+      'react-static-plugin-source-filesystem',
+      {
+        location: path.resolve('./src/pages')
+      }
+    ],
     [
       'react-static-plugin-sass',
       {

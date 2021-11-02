@@ -219,6 +219,11 @@ export const useSmoothScroll = () => {
 
     event.preventDefault();
 
+    if (window.location.pathname !== '/') {
+      window.location.replace('/');
+      return;
+    }
+
     setActiveNavLinkId(navLinkId);
 
     document.getElementById(navLinkId).scrollIntoView({ behavior: 'smooth' });
