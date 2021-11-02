@@ -15,6 +15,7 @@ const config = {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>App Conference</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Body>{children}</Body>
     </Html>
