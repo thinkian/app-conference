@@ -10,6 +10,13 @@ Inside the project directory, run the following command to install all the packa
 npm install
 ```
 
+Create a local `.env` file with the following properties:
+
+```
+AIRTABLE_API_KEY=YOUR_API_KEY_GOES_HERE
+AIRTABLE_BASE_ID=YOUR_BASE_ID_GOES_HERE
+```
+
 Then run the following to start the development server:
 
 ```
